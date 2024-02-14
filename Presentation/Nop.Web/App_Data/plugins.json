@@ -4,11 +4,11 @@
   ],
   "InstalledPlugins": [
     {
-      "SystemName": "Misc.Employee",
-      "Version": "3.57"
+      "SystemName": "Widgets.NivoSlider",
+      "Version": "1.50"
     },
     {
-      "SystemName": "Widgets.NivoSlider",
+      "SystemName": "Widgets.PromoSlider",
       "Version": "1.50"
     }
   ],

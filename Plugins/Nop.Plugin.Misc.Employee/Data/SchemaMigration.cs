@@ -4,7 +4,7 @@ using Nop.Data.Extensions;
 
 namespace Nop.Plugin.Misc.Employee.Data
 {
-    [NopMigration("2024/02/13 12:41:55:1687543", "Misc.Employee base schema")]
+    [NopMigration("2024/02/13 12:41:55:1687543", "Misc.Employee base schema"), ]
     public class SchemaMigration : AutoReversingMigration
     {
         public override void Up()

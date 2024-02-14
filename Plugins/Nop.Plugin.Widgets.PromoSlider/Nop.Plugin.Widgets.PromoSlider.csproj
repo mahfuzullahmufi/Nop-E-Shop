@@ -1,9 +1,146 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <OutputPath>..\..\Presentation\Nop.Web\Plugins\Widgets.PromoSlider</OutputPath>
+    <OutDir>$(OutputPath)</OutDir>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Content\promoslider\license.txt" />
+    <None Remove="Content\promoslider\promo-slider.css" />
+    <None Remove="Content\promoslider\README" />
+    <None Remove="Content\promoslider\sample-images\banner_01.webp" />
+    <None Remove="Content\promoslider\sample-images\banner_02.webp" />
+    <None Remove="Content\promoslider\themes\bar\arrows.png" />
+    <None Remove="Content\promoslider\themes\bar\bar.css" />
+    <None Remove="Content\promoslider\themes\bar\bullets.png" />
+    <None Remove="Content\promoslider\themes\bar\loading.gif" />
+    <None Remove="Content\promoslider\themes\custom\arrows.png" />
+    <None Remove="Content\promoslider\themes\custom\bullets.png" />
+    <None Remove="Content\promoslider\themes\custom\custom.css" />
+    <None Remove="Content\promoslider\themes\custom\loading.gif" />
+    <None Remove="Content\promoslider\themes\dark\arrows.png" />
+    <None Remove="Content\promoslider\themes\dark\bullets.png" />
+    <None Remove="Content\promoslider\themes\dark\dark.css" />
+    <None Remove="Content\promoslider\themes\dark\loading.gif" />
+    <None Remove="Content\promoslider\themes\default\arrows.png" />
+    <None Remove="Content\promoslider\themes\default\bullets.png" />
+    <None Remove="Content\promoslider\themes\default\default.css" />
+    <None Remove="Content\promoslider\themes\default\loading.gif" />
+    <None Remove="Content\promoslider\themes\light\arrows.png" />
+    <None Remove="Content\promoslider\themes\light\bullets.png" />
+    <None Remove="Content\promoslider\themes\light\light.css" />
+    <None Remove="Content\promoslider\themes\light\loading.gif" />
+    <None Remove="plugin.json" />
+    <None Remove="Scripts\jquery.promo.slider.js" />
+    <None Remove="Views\Configure.cshtml" />
+    <None Remove="Views\PublicInfo.cshtml" />
+    <None Remove="Views\_PublicInfo.SliderLine.cshtml" />
+    <None Remove="Views\_ViewImports.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Content\promoslider\license.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\promo-slider.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\README">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\sample-images\banner_01.webp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\sample-images\banner_02.webp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\themes\bar\arrows.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\themes\bar\bar.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\themes\bar\bullets.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\themes\bar\loading.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\themes\custom\arrows.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\themes\custom\bullets.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\themes\custom\custom.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\themes\custom\loading.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\themes\dark\arrows.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\themes\dark\bullets.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\themes\dark\dark.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\themes\dark\loading.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\themes\default\arrows.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\themes\default\bullets.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\themes\default\default.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\themes\default\loading.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\themes\light\arrows.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\themes\light\bullets.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\themes\light\light.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\promoslider\themes\light\loading.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="plugin.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\jquery.promo.slider.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Configure.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\PublicInfo.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\_PublicInfo.SliderLine.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\_ViewImports.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Presentation\Nop.Web.Framework\Nop.Web.Framework.csproj" />
+    <ProjectReference Include="..\..\Presentation\Nop.Web\Nop.Web.csproj" />
+  </ItemGroup>
 
 </Project>

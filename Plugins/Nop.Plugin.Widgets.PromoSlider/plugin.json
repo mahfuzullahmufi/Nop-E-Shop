@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Widgets",
+  "FriendlyName": "Promo Slider",
+  "SystemName": "Widgets.PromoSlider",
+  "Version": "1.50",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "Mufi",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Widgets.PromoSlider.dll",
+  "Description": "This plugin allows you to change the contents of product details page slider"
+}
