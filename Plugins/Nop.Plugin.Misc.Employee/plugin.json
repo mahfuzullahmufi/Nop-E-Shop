@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "Employee Management",
+  "SystemName": "Misc.Employee",
+  "Version": "3.57",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "mufi",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Misc.Employee.dll",
+  "Description": "This plugin allows to integrate with Employee service"
+}
