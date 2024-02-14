@@ -45,30 +45,6 @@
 
             @await Html.PartialAsync("~/Plugins/Widgets.PromoSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide3)
         }
-
-        @{
-            var dataSlide4 = new ViewDataDictionary(ViewData)
-            {
-                {"pictureUrl", Model.Picture4Url},
-                { "text", Model.Text4},
-                { "link", Model.Link4},
-                {"alttext", Model.AltText4 }
-            };
-
-            @await Html.PartialAsync("~/Plugins/Widgets.PromoSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide4)
-        }
-        
-        @{
-            var dataSlide5 = new ViewDataDictionary(ViewData)
-            {
-                {"pictureUrl", Model.Picture5Url},
-                { "text", Model.Text5},
-                { "link", Model.Link5},
-                {"alttext", Model.AltText5 }
-            };
-
-            @await Html.PartialAsync("~/Plugins/Widgets.PromoSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide5)
-        }
     </div>
 </div>
 <script asp-location="Footer">

@@ -18,15 +18,5 @@ namespace Nop.Plugin.Widgets.PromoSlider
         public string Text3 { get; set; }
         public string Link3 { get; set; }
         public string AltText3 { get; set; }
-
-        public int Picture4Id { get; set; }
-        public string Text4 { get; set; }
-        public string Link4 { get; set; }
-        public string AltText4 { get; set; }
-
-        public int Picture5Id { get; set; }
-        public string Text5 { get; set; }
-        public string Link5 { get; set; }
-        public string AltText5 { get; set; }
     }
 }

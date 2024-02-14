@@ -62,14 +62,6 @@ namespace Nop.Plugin.Widgets.NivoSlider.Controllers
                 Text3 = promoSliderSettings.Text3,
                 Link3 = promoSliderSettings.Link3,
                 AltText3 = promoSliderSettings.AltText3,
-                Picture4Id = promoSliderSettings.Picture4Id,
-                Text4 = promoSliderSettings.Text4,
-                Link4 = promoSliderSettings.Link4,
-                AltText4 = promoSliderSettings.AltText4,
-                Picture5Id = promoSliderSettings.Picture5Id,
-                Text5 = promoSliderSettings.Text5,
-                Link5 = promoSliderSettings.Link5,
-                AltText5 = promoSliderSettings.AltText5,
                 ActiveStoreScopeConfiguration = storeScope
             };
 
@@ -87,14 +79,6 @@ namespace Nop.Plugin.Widgets.NivoSlider.Controllers
                 model.Text3_OverrideForStore = await _settingService.SettingExistsAsync(promoSliderSettings, x => x.Text3, storeScope);
                 model.Link3_OverrideForStore = await _settingService.SettingExistsAsync(promoSliderSettings, x => x.Link3, storeScope);
                 model.AltText3_OverrideForStore = await _settingService.SettingExistsAsync(promoSliderSettings, x => x.AltText3, storeScope);
-                model.Picture4Id_OverrideForStore = await _settingService.SettingExistsAsync(promoSliderSettings, x => x.Picture4Id, storeScope);
-                model.Text4_OverrideForStore = await _settingService.SettingExistsAsync(promoSliderSettings, x => x.Text4, storeScope);
-                model.Link4_OverrideForStore = await _settingService.SettingExistsAsync(promoSliderSettings, x => x.Link4, storeScope);
-                model.AltText4_OverrideForStore = await _settingService.SettingExistsAsync(promoSliderSettings, x => x.AltText4, storeScope);
-                model.Picture5Id_OverrideForStore = await _settingService.SettingExistsAsync(promoSliderSettings, x => x.Picture5Id, storeScope);
-                model.Text5_OverrideForStore = await _settingService.SettingExistsAsync(promoSliderSettings, x => x.Text5, storeScope);
-                model.Link5_OverrideForStore = await _settingService.SettingExistsAsync(promoSliderSettings, x => x.Link5, storeScope);
-                model.AltText5_OverrideForStore = await _settingService.SettingExistsAsync(promoSliderSettings, x => x.AltText5, storeScope);
             }
 
             return View("~/Plugins/Widgets.PromoSlider/Views/Configure.cshtml", model);
@@ -116,8 +100,6 @@ namespace Nop.Plugin.Widgets.NivoSlider.Controllers
                 promoSliderSettings.Picture1Id,
                 promoSliderSettings.Picture2Id,
                 promoSliderSettings.Picture3Id,
-                promoSliderSettings.Picture4Id,
-                promoSliderSettings.Picture5Id
             };
 
             promoSliderSettings.Picture1Id = model.Picture1Id;
@@ -132,14 +114,6 @@ namespace Nop.Plugin.Widgets.NivoSlider.Controllers
             promoSliderSettings.Text3 = model.Text3;
             promoSliderSettings.Link3 = model.Link3;
             promoSliderSettings.AltText3 = model.AltText3;
-            promoSliderSettings.Picture4Id = model.Picture4Id;
-            promoSliderSettings.Text4 = model.Text4;
-            promoSliderSettings.Link4 = model.Link4;
-            promoSliderSettings.AltText4 = model.AltText4;
-            promoSliderSettings.Picture5Id = model.Picture5Id;
-            promoSliderSettings.Text5 = model.Text5;
-            promoSliderSettings.Link5 = model.Link5;
-            promoSliderSettings.AltText5 = model.AltText5;
 
             /* We do not clear cache after each setting update.
              * This behavior can increase performance because cached settings will not be cleared 
@@ -156,14 +130,6 @@ namespace Nop.Plugin.Widgets.NivoSlider.Controllers
             await _settingService.SaveSettingOverridablePerStoreAsync(promoSliderSettings, x => x.Text3, model.Text3_OverrideForStore, storeScope, false);
             await _settingService.SaveSettingOverridablePerStoreAsync(promoSliderSettings, x => x.Link3, model.Link3_OverrideForStore, storeScope, false);
             await _settingService.SaveSettingOverridablePerStoreAsync(promoSliderSettings, x => x.AltText3, model.AltText3_OverrideForStore, storeScope, false);
-            await _settingService.SaveSettingOverridablePerStoreAsync(promoSliderSettings, x => x.Picture4Id, model.Picture4Id_OverrideForStore, storeScope, false);
-            await _settingService.SaveSettingOverridablePerStoreAsync(promoSliderSettings, x => x.Text4, model.Text4_OverrideForStore, storeScope, false);
-            await _settingService.SaveSettingOverridablePerStoreAsync(promoSliderSettings, x => x.Link4, model.Link4_OverrideForStore, storeScope, false);
-            await _settingService.SaveSettingOverridablePerStoreAsync(promoSliderSettings, x => x.AltText4, model.AltText4_OverrideForStore, storeScope, false);
-            await _settingService.SaveSettingOverridablePerStoreAsync(promoSliderSettings, x => x.Picture5Id, model.Picture5Id_OverrideForStore, storeScope, false);
-            await _settingService.SaveSettingOverridablePerStoreAsync(promoSliderSettings, x => x.Text5, model.Text5_OverrideForStore, storeScope, false);
-            await _settingService.SaveSettingOverridablePerStoreAsync(promoSliderSettings, x => x.Link5, model.Link5_OverrideForStore, storeScope, false);
-            await _settingService.SaveSettingOverridablePerStoreAsync(promoSliderSettings, x => x.AltText5, model.AltText5_OverrideForStore, storeScope, false);
 
             //now clear settings cache
             await _settingService.ClearCacheAsync();
@@ -174,8 +140,6 @@ namespace Nop.Plugin.Widgets.NivoSlider.Controllers
                 promoSliderSettings.Picture1Id,
                 promoSliderSettings.Picture2Id,
                 promoSliderSettings.Picture3Id,
-                promoSliderSettings.Picture4Id,
-                promoSliderSettings.Picture5Id
             };
 
             //delete an old picture (if deleted or updated)

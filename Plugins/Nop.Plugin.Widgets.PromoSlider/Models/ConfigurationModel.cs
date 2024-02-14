@@ -49,33 +49,5 @@ namespace Nop.Plugin.Widgets.PromoSlider.Models
         [NopResourceDisplayName("Plugins.Widgets.PromoSlider.AltText")]
         public string AltText3 { get; set; }
         public bool AltText3_OverrideForStore { get; set; }
-
-        [NopResourceDisplayName("Plugins.Widgets.PromoSlider.Picture")]
-        [UIHint("Picture")]
-        public int Picture4Id { get; set; }
-        public bool Picture4Id_OverrideForStore { get; set; }
-        [NopResourceDisplayName("Plugins.Widgets.PromoSlider.Text")]
-        public string Text4 { get; set; }
-        public bool Text4_OverrideForStore { get; set; }
-        [NopResourceDisplayName("Plugins.Widgets.PromoSlider.Link")]
-        public string Link4 { get; set; }
-        public bool Link4_OverrideForStore { get; set; }
-        [NopResourceDisplayName("Plugins.Widgets.PromoSlider.AltText")]
-        public string AltText4 { get; set; }
-        public bool AltText4_OverrideForStore { get; set; }
-
-        [NopResourceDisplayName("Plugins.Widgets.PromoSlider.Picture")]
-        [UIHint("Picture")]
-        public int Picture5Id { get; set; }
-        public bool Picture5Id_OverrideForStore { get; set; }
-        [NopResourceDisplayName("Plugins.Widgets.PromoSlider.Text")]
-        public string Text5 { get; set; }
-        public bool Text5_OverrideForStore { get; set; }
-        [NopResourceDisplayName("Plugins.Widgets.PromoSlider.Link")]
-        public string Link5 { get; set; }
-        public bool Link5_OverrideForStore { get; set; }
-        [NopResourceDisplayName("Plugins.Widgets.PromoSlider.AltText")]
-        public string AltText5 { get; set; }
-        public bool AltText5_OverrideForStore { get; set; }
     }
 }

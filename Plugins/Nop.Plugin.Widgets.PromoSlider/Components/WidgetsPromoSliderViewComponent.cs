@@ -52,21 +52,10 @@ namespace Nop.Plugin.Widgets.PromoSlider.Components
                 Text3 = promoSliderSettings.Text3,
                 Link3 = promoSliderSettings.Link3,
                 AltText3 = promoSliderSettings.AltText3,
-
-                Picture4Url = await GetPictureUrlAsync(promoSliderSettings.Picture4Id),
-                Text4 = promoSliderSettings.Text4,
-                Link4 = promoSliderSettings.Link4,
-                AltText4 = promoSliderSettings.AltText4,
-
-                Picture5Url = await GetPictureUrlAsync(promoSliderSettings.Picture5Id),
-                Text5 = promoSliderSettings.Text5,
-                Link5 = promoSliderSettings.Link5,
-                AltText5 = promoSliderSettings.AltText5
             };
 
             if (string.IsNullOrEmpty(model.Picture1Url) && string.IsNullOrEmpty(model.Picture2Url) &&
-                string.IsNullOrEmpty(model.Picture3Url) && string.IsNullOrEmpty(model.Picture4Url) &&
-                string.IsNullOrEmpty(model.Picture5Url))
+                string.IsNullOrEmpty(model.Picture3Url))
                 //no pictures uploaded
                 return Content("");
 

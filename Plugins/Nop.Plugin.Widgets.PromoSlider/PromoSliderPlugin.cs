@@ -93,8 +93,6 @@ namespace Nop.Plugin.Widgets.PromoSlider
                 ["Plugins.Widgets.PromoSlider.Picture1"] = "Picture 1",
                 ["Plugins.Widgets.PromoSlider.Picture2"] = "Picture 2",
                 ["Plugins.Widgets.PromoSlider.Picture3"] = "Picture 3",
-                ["Plugins.Widgets.PromoSlider.Picture4"] = "Picture 4",
-                ["Plugins.Widgets.PromoSlider.Picture5"] = "Picture 5",
                 ["Plugins.Widgets.PromoSlider.Picture"] = "Picture",
                 ["Plugins.Widgets.PromoSlider.Picture.Hint"] = "Upload picture.",
                 ["Plugins.Widgets.PromoSlider.Text"] = "Comment",
