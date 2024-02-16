@@ -10,6 +10,10 @@
     {
       "SystemName": "Widgets.PromoSlider",
       "Version": "1.50"
+    },
+    {
+      "SystemName": "Widgets.ShowText",
+      "Version": "1.50"
     }
   ],
   "PluginNamesToUninstall": [],

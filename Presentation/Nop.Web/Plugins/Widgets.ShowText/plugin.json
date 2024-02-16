@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Widgets",
+  "FriendlyName": "Show Text",
+  "SystemName": "Widgets.ShowText",
+  "Version": "1.50",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "Mufi",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Widgets.ShowText.dll",
+  "Description": "This plugin Show a text"
+}
