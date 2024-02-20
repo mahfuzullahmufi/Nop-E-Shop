@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Routing;
-using Nop.Core;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Nop.Services.Common;
+using Nop.Services.Localization;
 using Nop.Services.Plugins;
-using Nop.Services.Security;
-using Nop.Web.Framework;
 using Nop.Web.Framework.Menu;
 
 namespace Nop.Plugin.Misc.Employee
@@ -11,19 +10,15 @@ namespace Nop.Plugin.Misc.Employee
     public class EmployeePlugin : BasePlugin, IAdminMenuPlugin, IMiscPlugin
     {
         #region Fields
-
-        private readonly IPermissionService _permissionService;
-        private readonly IWebHelper _webHelper;
-
+        private readonly ILocalizationService _localizationService;
+        private string prefixName = "Plugins.Misc.Employee";
         #endregion
 
         #region Ctor
 
-        public EmployeePlugin(IPermissionService permissionService,
-            IWebHelper webHelper)
+        public EmployeePlugin(ILocalizationService localizationService)
         {
-            _permissionService = permissionService;
-            _webHelper = webHelper;
+            _localizationService = localizationService;
         }
 
         #endregion
@@ -35,7 +30,7 @@ namespace Nop.Plugin.Misc.Employee
         /// </summary>
         public override string GetConfigurationPageUrl()
         {
-            return $"{_webHelper.GetStoreLocation()}Admin/WebApiFrontend/Configure";
+            return "";
         }
 
         /// <summary>
@@ -44,17 +39,35 @@ namespace Nop.Plugin.Misc.Employee
         /// <returns>A task that represents the asynchronous operation</returns>
         public override async Task InstallAsync()
         {
+            await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
+            {
+                [$"{prefixName}.Fields.Name"] = "Name",
+                [$"{prefixName}.Fields.EmployeeDesignation"] = "Employee Designation",
+                [$"{prefixName}.Fields.Salary"] = "Salary",
+                [$"{prefixName}.Fields.IsActive"] = "Is Active",
+                [$"{prefixName}.Fields.JoiningDate"] = "Joining Date",
+
+                ["Plugins.Misc.Employee.Fields.Name.Required"] = "Name is required",
+                ["Plugins.Misc.Employee.Fields.EmployeeDesignation.Required"] = "Employee Designation is required",
+                ["Plugins.Misc.Employee.Fields.Salary.Required"] = "Salary is required",
+                ["Plugins.Misc.Employee.Fields.JoiningDate.Required"] = "Joining Date is required",
+
+                ["Plugins.Misc.Employee.List.SearchEmployeeName"] = "Employee Name",
+                ["Plugins.Misc.Employee.List.SearchDesignation"] = "Employee Designation",
+                ["Plugins.Misc.Employee.List.SearchIsActive"] = "Active Employee",
+                ["Plugins.Misc.Employee.List.SearchJoiningDate"] = "Joining Date",
+
+                ["Plugins.Misc.Employee.List"] = "Employee List",
+                ["Plugins.Misc.Employee.AddNew"] = "Add Employee",
+                ["Plugins.Misc.Employee.Edit"] = "Edit Employee",
+                ["Plugins.Misc.Employee.BackToList"] = "Back To List",
+            });
+
             await base.InstallAsync();
         }
 
         public async Task ManageSiteMapAsync(SiteMapNode rootNode)
         {
-            //var menuItem = new SiteMapNode()
-            //{
-            //    Title = "Plugins",
-            //    Visible = true,
-            //    IconClass = "far fa-dot-circle",
-            //};
             var listItem = new SiteMapNode()
             {
                 Title = "Employee",
@@ -63,8 +76,6 @@ namespace Nop.Plugin.Misc.Employee
                 IconClass = "far fa-circle",
                 SystemName = "Misc.Employee"
             };
-            //menuItem.ChildNodes.Add(listItem);
-
 
             rootNode.ChildNodes.Add(listItem);
 
@@ -76,6 +87,9 @@ namespace Nop.Plugin.Misc.Employee
         /// <returns>A task that represents the asynchronous operation</returns>
         public override async Task UninstallAsync()
         {
+            //locales
+            await _localizationService.DeleteLocaleResourcesAsync(prefixName);
+
             await base.UninstallAsync();
         }
 

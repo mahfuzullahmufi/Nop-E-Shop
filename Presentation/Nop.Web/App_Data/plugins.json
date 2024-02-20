@@ -14,6 +14,10 @@
     {
       "SystemName": "Widgets.ShowText",
       "Version": "1.50"
+    },
+    {
+      "SystemName": "Misc.Employee",
+      "Version": "1.00"
     }
   ],
   "PluginNamesToUninstall": [],
