@@ -12,7 +12,7 @@
     <OutputPath>..\..\Presentation\Nop.Web\Plugins\Misc.Employee</OutputPath>
     <OutDir>$(OutputPath)</OutDir>
     <!--Set this parameter to true to get the dlls copied from the NuGet cache to the output of your    project. You need to set this parameter to true if your plugin has a nuget package to ensure that   the dlls copied from the NuGet cache to the output of your project-->
-    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,6 +24,7 @@
     <None Remove="Areas\Admin\Views\_ViewStart.cshtml" />
     <None Remove="logo.png" />
     <None Remove="plugin.json" />
+    <None Remove="Views\ShowEmployee\List.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,6 +54,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="plugin.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\ShowEmployee\List.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -1,0 +1,108 @@
+﻿@model EmployeeSearchModel
+
+@{
+    //page title
+    ViewBag.PageTitle = T("Plugins.Misc.Employee.List").Text;
+}
+
+<style>
+    span.grid-report-item.gray {
+        background-color: gray;
+        color: #fff;
+    }
+</style>
+
+<form asp-controller="ShowEmployee" asp-action="List" method="post" id="employees-form">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <div class="cards-group">
+                    <div class="card card-default">
+                        <div class="card-body">
+                            @await Html.PartialAsync("Table", new DataTablesModel
+                       {
+                           Name = "employee-grid",
+                           UrlRead = new DataUrl("List", "Employee", null),
+                           SearchButtonId = "search-employee-list",
+                           Length = Model.PageSize,
+                           LengthMenu = Model.AvailablePageSizes,
+                           Filters = new List<FilterParameter>
+                            {
+                            new FilterParameter(nameof(Model.SearchEmployeeName)),
+                            new FilterParameter(nameof(Model.SearchDesignation)),
+                            new FilterParameter(nameof(Model.SearchIsActiveId)),
+                            new FilterParameter(nameof(Model.SearchJoiningDate))
+                            },
+                           ColumnCollection = new List<ColumnProperty>
+                            {
+                            new ColumnProperty(nameof(EmployeeDetailsModel.Id))
+                            {
+                            IsMasterCheckBox = true,
+                            Render = new RenderCheckBox("checkbox_employee"),
+                            ClassName =  NopColumnClassDefaults.CenterAll,
+                            Width = "10"
+                            },
+                            new ColumnProperty(nameof(EmployeeDetailsModel.PictureUrl))
+                            {
+                            Title = T("Admin.Catalog.Products.Fields.PictureThumbnailUrl").Text,
+                            Width = "100",
+                            Render = new RenderPicture(width: 100)
+                            },
+                            new ColumnProperty(nameof(EmployeeDetailsModel.Name))
+                            {
+                            Title = T("Plugins.Misc.Employee.List.SearchEmployeeName").Text,
+                            Width = "20"
+                            },
+                            new ColumnProperty(nameof(EmployeeDetailsModel.EmployeeDesignationTitle))
+                            {
+                            Title = T("Plugins.Misc.Employee.List.SearchDesignation").Text,
+                            Width = "10",
+                            },
+                            new ColumnProperty(nameof(EmployeeDetailsModel.IsActive))
+                            {
+                            Title = T("Plugins.Misc.Employee.Fields.IsActive").Text,
+                            Width = "10",
+                            ClassName = NopColumnClassDefaults.CenterAll,
+                            Render = new RenderBoolean()
+                            },
+                            new ColumnProperty(nameof(EmployeeDetailsModel.Salary))
+                            {
+                            Title = T("Plugins.Misc.Employee.Fields.Salary").Text,
+                            Width = "20"
+                            },
+                            new ColumnProperty(nameof(EmployeeDetailsModel.JoiningDate))
+                            {
+                            Title = T("Plugins.Misc.Employee.List.SearchJoiningDate").Text,
+                            Width = "20",
+                            Render = new RenderDate(),
+                            }
+                            }
+                       })
+                        </div>
+
+                        <script>
+                            function renderColumnEdit(data, type, row, meta) {
+                                return '<button onclick=\"javascript:OpenWindow(\'@Url.Content("~/Admin/Employee/EmployeeStatusEditPopup/")' + data + '?btnId=btnRefresh&formId=employee-form\', 800, 550, true); return false;\" class="btn btn-default"><i class="fa fa-pencil"></i>@T("Admin.Common.Change.Status")</button>';
+                            }
+                        </script>
+                        <div class="panel-footer">
+                            <input type="submit" id="btnRefresh" style="display:none" />
+                            <script>
+                                $(document).ready(function () {
+                                    $('#btnRefresh').click(function () {
+                                        //refresh grid
+                                        updateTable('#employee-grid');
+                                        //return false to don't reload a page
+                                        return false;
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+<nop-alert asp-alert-id="deleteSelectedFailed" />
+<nop-alert asp-alert-id="nothingSelectedAlert" />

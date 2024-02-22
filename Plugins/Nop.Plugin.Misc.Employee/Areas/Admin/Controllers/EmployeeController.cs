@@ -12,6 +12,7 @@ using Nop.Services.Localization;
 using Nop.Services.Messages;
 using Nop.Services.Security;
 using Nop.Web.Areas.Admin.Controllers;
+using Nop.Web.Framework.Mvc.Filters;
 
 namespace Nop.Plugin.Misc.Employee.Areas.Admin.Controllers
 {
@@ -30,7 +31,7 @@ namespace Nop.Plugin.Misc.Employee.Areas.Admin.Controllers
 
         #region Ctor
 
-        public EmployeeController(IEmployeeModelFactory employeeModelFactory, 
+        public EmployeeController(IEmployeeModelFactory employeeModelFactory,
             IEmployeeService employeeService,
             IDateTimeHelper dateTimeHelper,
             ILocalizationService localizationService,
@@ -68,14 +69,17 @@ namespace Nop.Plugin.Misc.Employee.Areas.Admin.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create(EmployeeDetailsModel model)
+        [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
+        public async Task<IActionResult> Create(EmployeeDetailsModel model, bool continueEditing)
         {
             if (ModelState.IsValid)
             {
                 var employee = await _employeeModelFactory.PrepareEmployeeDetailsAsync(model, new EmployeeDetails());
                 await _employeeService.InsertEmployeeAsync(employee);
-                return RedirectToAction("List");
+                if (!continueEditing)
+                    return RedirectToAction("List");
+
+                return RedirectToAction("Edit", new { id = employee.Id });
             }
 
             return View(model);
@@ -96,8 +100,8 @@ namespace Nop.Plugin.Misc.Employee.Areas.Admin.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        public virtual async Task<IActionResult> Edit(EmployeeDetailsModel model)
+        [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
+        public virtual async Task<IActionResult> Edit(EmployeeDetailsModel model, bool continueEditing)
         {
             var employee = await _employeeService.GetEmployeeByIdAsync(model.Id);
             if (employee == null)
@@ -106,16 +110,32 @@ namespace Nop.Plugin.Misc.Employee.Areas.Admin.Controllers
                 return RedirectToAction("List");
             }
 
-
             if (ModelState.IsValid)
             {
                 //prepare entity
                 employee = await _employeeModelFactory.PrepareEmployeeDetailsAsync(model, new EmployeeDetails());
                 await _employeeService.UpdateEmployeeAsync(employee);
                 _notificationService.SuccessNotification("Employee updated.");
-                return RedirectToAction("List");
+                if (!continueEditing)
+                    return RedirectToAction("List");
+
+                return RedirectToAction("Edit", new { id = employee.Id });
             }
             return View(model);
+        }
+
+        [HttpPost]
+        public virtual async Task<IActionResult> Delete(EmployeeDetailsModel model)
+        {
+            var employee = await _employeeService.GetEmployeeByIdAsync(model.Id);
+            if (employee == null)
+                return RedirectToAction("List");
+
+            await _employeeService.DeleteEmployeeAsync(employee);
+
+            _notificationService.ErrorNotification("Employee Deleted.");
+
+            return RedirectToAction("List");
         }
 
         [HttpPost]
@@ -126,7 +146,7 @@ namespace Nop.Plugin.Misc.Employee.Areas.Admin.Controllers
 
             await _employeeService.DeleteEmployeesAsync((await _employeeService.GetEmployeesByIdsAsync(selectedIds.ToArray())).ToList());
 
-            _notificationService.SuccessNotification("Employee Deleted.");
+            _notificationService.ErrorNotification("Employees Deleted.");
 
             return Json(new { Result = true });
         }

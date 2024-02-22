@@ -1,13 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Nop.Plugin.Widgets.ShowText.Components;
+using Nop.Services.Cms;
 using Nop.Services.Common;
 using Nop.Services.Localization;
 using Nop.Services.Plugins;
+using Nop.Web.Framework.Infrastructure;
 using Nop.Web.Framework.Menu;
 
 namespace Nop.Plugin.Misc.Employee
 {
-    public class EmployeePlugin : BasePlugin, IAdminMenuPlugin, IMiscPlugin
+    public class EmployeePlugin : BasePlugin, IAdminMenuPlugin, IMiscPlugin, IWidgetPlugin
     {
         #region Fields
         private readonly ILocalizationService _localizationService;
@@ -24,6 +28,21 @@ namespace Nop.Plugin.Misc.Employee
         #endregion
 
         #region Methods
+
+        public Task<IList<string>> GetWidgetZonesAsync()
+        {
+            return Task.FromResult<IList<string>>(new List<string> { PublicWidgetZones.ProductDetailsAfterBreadcrumb });
+        }
+
+        /// <summary>
+        /// Gets a name of a view component for displaying widget
+        /// </summary>
+        /// <param name="widgetZone">Name of the widget zone</param>
+        /// <returns>View component name</returns>
+        public Type GetWidgetViewComponent(string widgetZone)
+        {
+            return typeof(ShowEmployeeViewComponent);
+        }
 
         /// <summary>
         /// Gets a configuration page URL
@@ -61,6 +80,12 @@ namespace Nop.Plugin.Misc.Employee
                 ["Plugins.Misc.Employee.AddNew"] = "Add Employee",
                 ["Plugins.Misc.Employee.Edit"] = "Edit Employee",
                 ["Plugins.Misc.Employee.BackToList"] = "Back To List",
+
+                ["Plugins.Misc.Employee.AvailableActiveOpdion.All"] = "All",
+                ["Plugins.Misc.Employee.AvailableActiveOpdion.ActiveEmployee"] = "Active Employee",
+                ["Plugins.Misc.Employee.AvailableActiveOpdion.InActiveEmployee"] = "In Active Employee",
+                ["Plugins.Misc.Employee.Fields.Picture"] = "Picture",
+                ["Plugins.Misc.Employee.Fields.Picture.Hint"] = "Employee Picture",
             });
 
             await base.InstallAsync();
@@ -92,6 +117,11 @@ namespace Nop.Plugin.Misc.Employee
 
             await base.UninstallAsync();
         }
+
+        /// <summary>
+        /// Gets a value indicating whether to hide this plugin on the widget list page in the admin area
+        /// </summary>
+        public bool HideInWidgetList => false;
 
         #endregion
     }

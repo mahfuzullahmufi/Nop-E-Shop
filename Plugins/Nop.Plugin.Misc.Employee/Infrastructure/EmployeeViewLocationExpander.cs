@@ -12,7 +12,7 @@ namespace Nop.Plugin.Misc.Employee.Infrastructure
         public IEnumerable<string> ExpandViewLocations(ViewLocationExpanderContext context, IEnumerable<string> viewLocations)
         {
             viewLocations = new[] {
-                    //$"/Plugins/Misc.Employee/Areas/Admin/Views/Shared/{{0}}.cshtml",
+                    $"/Plugins/Misc.Employee/Views/{{1}}/{{0}}.cshtml",
                     $"/Plugins/Misc.Employee/Areas/Admin/Views/{{1}}/{{0}}.cshtml",
                 }.Concat(viewLocations);
 

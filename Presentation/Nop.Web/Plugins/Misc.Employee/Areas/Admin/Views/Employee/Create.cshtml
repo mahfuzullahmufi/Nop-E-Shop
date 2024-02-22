@@ -19,6 +19,10 @@
                 <i class="far fa-save"></i>
                 @T("Admin.Common.Save")
             </button>
+            <button type="submit" name="save-continue" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.SaveContinue")
+            </button>
             @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.CustomerDetailsButtons, additionalData = Model })
         </div>
     </div>

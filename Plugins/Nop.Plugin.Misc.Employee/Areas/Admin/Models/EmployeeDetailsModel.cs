@@ -13,6 +13,10 @@ namespace Nop.Plugin.Misc.Employee.Areas.Admin.Models
         [NopResourceDisplayName("Plugins.Misc.Employee.Fields.EmployeeDesignation")]
         public DesignationType EmployeeDesignation { get; set; }
         public string? EmployeeDesignationTitle { get; set; }
+        [UIHint("Picture")]
+        [NopResourceDisplayName("Plugins.Misc.Employee.Fields.Picture")]
+        public int PictureId { get; set; }
+        public string PictureUrl { get; set; }
         [NopResourceDisplayName("Plugins.Misc.Employee.Fields.Salary")]
         public double Salary { get; set; }
         [NopResourceDisplayName("Plugins.Misc.Employee.Fields.IsActive")]
