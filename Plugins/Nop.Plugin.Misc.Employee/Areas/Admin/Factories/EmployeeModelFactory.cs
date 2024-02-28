@@ -74,7 +74,7 @@ namespace Nop.Plugin.Misc.Employee.Areas.Admin.Factories
                 return employees.SelectAwait(async employee =>
                 {
                     var employeeModel = await PrepareEmployeeDetailsModelAsync(new EmployeeDetailsModel(), employee);
-                    var pictureUrl = await _pictureService.GetPictureUrlAsync(employeeModel.PictureId, 75, false);
+                    var pictureUrl = await _pictureService.GetPictureUrlAsync(employeeModel.PictureId, 75, true);
                     if (!string.IsNullOrEmpty(pictureUrl))
                         employeeModel.PictureUrl = pictureUrl;
 

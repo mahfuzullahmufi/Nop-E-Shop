@@ -7,6 +7,7 @@ using Nop.Core;
 using Nop.Data;
 using Nop.Plugin.Misc.Employee.Domain;
 using Nop.Core.Domain.Media;
+using Nop.Core.Caching;
 
 namespace Nop.Plugin.Misc.Employee.Services
 {
@@ -15,16 +16,16 @@ namespace Nop.Plugin.Misc.Employee.Services
         #region Fields
 
         private readonly IRepository<EmployeeDetails> _employeeRepository;
-        private readonly IRepository<Picture> _pictureRepository;
+        private readonly IStaticCacheManager _staticCacheManager;
 
         #endregion
 
         #region Ctor
 
-        public EmployeeService(IRepository<EmployeeDetails> employeeRepository, IRepository<Picture> pictureRepository)
+        public EmployeeService(IRepository<EmployeeDetails> employeeRepository, IStaticCacheManager staticCacheManager)
         {
             _employeeRepository = employeeRepository;
-            _pictureRepository = pictureRepository;
+            _staticCacheManager = staticCacheManager;
         }
 
         #endregion
@@ -33,23 +34,31 @@ namespace Nop.Plugin.Misc.Employee.Services
 
         public async Task<IPagedList<EmployeeDetails>> GetAllEmployeesAsync(string? name, int? designationId, int? isActiveId, DateTime? joiningDate, int pageIndex = 0, int pageSize = 10)
         {
-            var query = _employeeRepository.Table;
+            
 
-            if (!string.IsNullOrWhiteSpace(name))
-                query = query.Where(x => x.Name.Contains(name));
+            var cacheKey = _staticCacheManager.PrepareKeyForDefaultCache(EmployeeDefaults.EmployeeCacheKey);
 
-            if (designationId > 0)
-                query = query.Where(x => x.EmployeeDesignationId == designationId);
+            return await _staticCacheManager.GetAsync(cacheKey, async () =>
 
-            if (isActiveId > 0)
-                query = query.Where(x => x.IsActive == (isActiveId == 1 ? true : false));
+            {
+                var query = _employeeRepository.Table;
 
-            if (joiningDate != null)
-                query = query.Where(x => x.JoiningDate == joiningDate);
+                if (!string.IsNullOrWhiteSpace(name))
+                    query = query.Where(x => x.Name.Contains(name));
 
-            query = query.OrderByDescending(x => x.JoiningDate);
+                if (designationId > 0)
+                    query = query.Where(x => x.EmployeeDesignationId == designationId);
 
-            return await query.ToPagedListAsync(pageIndex, pageSize);
+                if (isActiveId > 0)
+                    query = query.Where(x => x.IsActive == (isActiveId == 1 ? true : false));
+
+                if (joiningDate != null)
+                    query = query.Where(x => x.JoiningDate == joiningDate);
+
+                query = query.OrderByDescending(x => x.JoiningDate);
+                return await query.ToPagedListAsync(pageIndex, pageSize);
+             });
+            //return await query.ToPagedListAsync(pageIndex, pageSize);
         }
 
         public async Task<EmployeeDetails> GetEmployeeByIdAsync(int id)
@@ -83,11 +92,6 @@ namespace Nop.Plugin.Misc.Employee.Services
         public async Task DeleteEmployeeAsync(EmployeeDetails employee)
         {
             await _employeeRepository.DeleteAsync(employee);
-        }
-
-        public async Task<Picture> GetEmployeePictureAsync(int id)
-        {
-            return await _pictureRepository.GetByIdAsync(id, cache => default);
         }
 
         #endregion

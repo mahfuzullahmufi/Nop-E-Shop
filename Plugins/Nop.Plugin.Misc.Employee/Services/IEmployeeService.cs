@@ -19,7 +19,6 @@ namespace Nop.Plugin.Misc.Employee.Services
         Task UpdateEmployeeAsync(EmployeeDetails employee);
         Task DeleteEmployeesAsync(IList<EmployeeDetails> employees);
         Task DeleteEmployeeAsync(EmployeeDetails employee);
-        Task<Picture> GetEmployeePictureAsync(int id);
         #endregion
     }
 }
