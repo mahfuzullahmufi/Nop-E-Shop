@@ -7,6 +7,7 @@ namespace Nop.Plugin.Misc.Employee
         public static CacheKey EmployeeCacheKey => new CacheKey("Plugins.Misc.Employee", EmployeePluginPrefix);
 
         public static string EmployeePluginPrefix => "Nop.employeedetails.";
+        public const string CustomerFirstOrderNotification = "Customer.FirstOrderMessage";
     }
 }
 

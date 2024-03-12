@@ -18,6 +18,14 @@
     {
       "SystemName": "Misc.Employee",
       "Version": "1.00"
+    },
+    {
+      "SystemName": "Shipping.FixedByWeightByTotal",
+      "Version": "2.36"
+    },
+    {
+      "SystemName": "Payments.CheckMoneyOrder",
+      "Version": "1.51"
     }
   ],
   "PluginNamesToUninstall": [],

@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Nop.Core.Infrastructure;
 using Nop.Plugin.Misc.Employee.Areas.Admin.Factories;
 using Nop.Plugin.Misc.Employee.Services;
+using Nop.Services.Messages;
 
 namespace Nop.Plugin.Misc.Employee.Infrastructure
 {
@@ -13,6 +14,7 @@ namespace Nop.Plugin.Misc.Employee.Infrastructure
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IExtendWorkflowMessageService, ExtendWorkflowMessageService>();
             services.AddScoped<IEmployeeModelFactory, EmployeeModelFactory>();
             services.Configure<RazorViewEngineOptions>(options =>
             {
